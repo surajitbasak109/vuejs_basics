@@ -1,23 +1,25 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport"
-    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>VueJS Tutorial</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 
 <body>
   <div id="app">
-    <h1>{{ greet('night') }}</h1>
-    <p>Name: {{ name }}</p>
-    <p>Job: {{ job }}</p>
-    <p>Here is my <a v-bind:href="website">website</a></p>
-    <p v-html="siteTag"></p>
+    <h1>Events</h1>
+    <button v-on:click="add(1)">Add a year</button>
+    <button v-on:click="substract(1)">Substract a year</button>
+    <button v-on:dblclick="add(10)">Add 10 years</button>
+    <button v-on:dblclick="substract(10)">Substract 10 years</button>
+    <p>My age is {{ age }}</p>
+    <div id="canvas" @mousemove="updateXY">{{ x }}, {{ y }}</div>
   </div>
   <script src="app.js"></script>
 </body>

@@ -91,3 +91,29 @@ var vm = new Vue({
 Original Message: "Hello"
 Computed Reversed Message: "olleH"
 ```
+
+## Looping through array and objects
+
+`v-for` directive can be used to render a list of items based on an array. The `v-for` directive requires a special syntax in the form of `item in items`, where `items` is the source data array and `item` is an alias for the array element being iterated on:
+
+```html
+<ul id="example-1">
+  <li v-for="item in items">
+    {{ item.message }}
+  </li>
+</ul>
+```
+
+```javascript
+var example1 = new Vue({
+  el: "#example-1",
+  data: {
+    items: [{ message: "Foo" }, { message: "Bar" }]
+  }
+});
+```
+
+**Result:**
+
+- Foo
+- Bar

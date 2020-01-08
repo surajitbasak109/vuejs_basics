@@ -38,3 +38,7 @@ v-on:click.prevent
 - .meta
 
 _Note_: On Macintosh keyboards, meta is the command key. On Windows keyboards, meta is the Windows key.
+
+## 2-Way Data Binding
+
+`v-model` directive can be used to create two-way data bindings on form input, textarea and select elements. It automatically picks the correct way to update the element based on the input type.

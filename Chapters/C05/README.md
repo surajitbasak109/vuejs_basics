@@ -1,6 +1,7 @@
-#Vue JS Tutorial
+# Vue JS Tutorial
 
-##Events
+## Events
+
 ```javascript
 v-on:click
 v-on:dblclick
@@ -8,3 +9,17 @@ v-on:dblclick
 @dblcick
 ```
 
+### Event Modifieres
+
+Modifiers are directive postfixes denoted by a dot.
+
+- .stop
+- .prevent
+- .self
+- .capture
+- .once
+- .passive
+
+```Javascript
+v-on:click.prevent
+```

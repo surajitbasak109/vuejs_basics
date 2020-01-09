@@ -117,3 +117,13 @@ var example1 = new Vue({
 
 - Foo
 - Bar
+
+## The Vue CLI
+
+Create a dev environment workflow with webpack
+
+- Use ES6 features
+- Compile & minify our JS into 1 file
+- Use single file templates
+- Compile everything on our machine, not in a browser
+- Live reload dev server

@@ -25,7 +25,7 @@
         </div>
       </div>
       <label>Author:</label>
-      <select v-model="blog.author" class="form-control">
+      <select v-model="blog.author">
         <option v-for="author in authors">{{ author }}</option>
       </select>
     </form>

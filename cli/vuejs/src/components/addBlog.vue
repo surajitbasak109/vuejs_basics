@@ -1,34 +1,45 @@
 <template>
   <div class="add-blog">
     <h2>Add a new blog post</h2>
-    <form>
+    <form v-if="!submitted">
       <label>Blog Title: </label>
       <input type="text" v-model.lazy="blog.title" required/>
       <label>Blog Content:</label>
       <textarea v-model.lazy="blog.content"></textarea>
-      <div class="checkboxes d-flex justify-content-between align-items-center">
-        <div class="d-flex justify-content-between align-items-center">
-          <label>Ninjas</label>
-          <input type="checkbox" value="Ninjas" v-model="blog.categories">
-        </div>
-        <div class="d-flex justify-content-between align-items-center">
-          <label>Wizards</label>
-          <input type="checkbox" value="Wizards" v-model="blog.categories">
-        </div>
-        <div class="d-flex justify-content-between align-items-center">
-          <label>Mario</label>
-          <input type="checkbox" value="Mario" v-model="blog.categories">
-        </div>
-        <div class="d-flex justify-content-between align-items-center">
-          <label>Cheese</label>
-          <input type="checkbox" value="Cheese" v-model="blog.categories">
+      <div class="form-group">
+        <label>Categories</label>
+        <div class="checkboxes d-flex justify-content-between align-items-center">
+          <div class="d-flex justify-content-between align-items-center">
+            <label>Ninjas</label>
+            <input type="checkbox" value="Ninjas" v-model="blog.categories">
+          </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <label>Wizards</label>
+            <input type="checkbox" value="Wizards" v-model="blog.categories">
+          </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <label>Mario</label>
+            <input type="checkbox" value="Mario" v-model="blog.categories">
+          </div>
+          <div class="d-flex justify-content-between align-items-center">
+            <label>Cheese</label>
+            <input type="checkbox" value="Cheese" v-model="blog.categories">
+          </div>
         </div>
       </div>
-      <label>Author:</label>
-      <select v-model="blog.author" class="form-control">
-        <option v-for="author in authors">{{ author }}</option>
-      </select>
+      <div class="form-group">
+        <label>Author:</label>
+        <select v-model="blog.author" class="form-control">
+          <option v-for="author in authors">{{ author }}</option>
+        </select>
+      </div>
+      <div class="form-group mt-3">
+        <button :disabled="btnClicked" v-on:click.prevent="post" class="btn btn-primary btn-flat">Add Blog</button>
+      </div>
     </form>
+    <div v-if="submitted">
+      <h3>Thanks for adding your post</h3>
+    </div>
     <div class="preview">
       <h3>Preview Blog</h3>
       <p>Blog Title: {{ blog.title }}</p>
@@ -60,10 +71,25 @@
           "The Net Ninja",
           "The Angular Avenger",
           "The Vue Vindicator"
-        ]
+        ],
+        btnClicked: false,
+        submitted: false
       }
     },
-    methods: {}
+    methods: {
+      post(){
+        this.btnClicked = true;
+        const {title, content, author} = this.blog;
+        this.$http.post("https://jsonplaceholder.typicode.com/posts", {
+          title,
+          content,
+          userId: 1
+        }).then(data => {
+          console.log(data);
+          this.submitted = true;
+        });
+      }
+    }
   };
 </script>
 

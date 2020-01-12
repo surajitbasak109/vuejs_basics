@@ -2,16 +2,8 @@
   <div class="single-blog">
     <h1>{{ blog.title }}</h1>
     <article>
-      {{ blog.content }}
+      {{ blog.body }}
     </article>
-    <hr>
-    <p>Author: {{ blog.author }}</p>
-    <div class="category-container">
-      <h5>Category:</h5>
-      <ul>
-        <li v-for="category in blog.categories">{{ category }}</li>
-      </ul>
-    </div>
   </div>
 </template>
 <script>
@@ -23,10 +15,9 @@
       }
     },
     created() {
-      this.$http.get("https://vue-app-blog.firebaseio.com/posts/" + this.id + ".json")
-        .then(data => data.json())
+      this.$http.get("https://jsonplaceholder.typicode.com/posts/" + this.id)
         .then(data => {
-          this.blog = data;
+          this.blog = data.body;
         })
         .catch(err => console.log(err));
     }

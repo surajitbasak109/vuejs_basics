@@ -1,18 +1,14 @@
 <template>
-  <div class="show-blogs">
-    <h1>All Blog Articles</h1>
+  <div v-theme:column="'wide'" class="show-blogs">
+    <h1>List Blog Titles</h1>
     <input type="text" v-model="search" placeholder="Search blogs" class="form-control" />
     <div v-for="blog in filteredBlogs" class="single-blog">
-      <router-link v-bind:to="'/blog/' + blog.id" exact>
       <h2 v-rainbow>{{ blog.title | to-uppercase }}</h2>
-      </router-link>
-      <article>{{ blog.content | snippet }}</article>
     </div>
   </div>
 </template>
 
 <script>
-
   import searchMixin from "../mixins/searchMixin";
 
   export default {
@@ -24,15 +20,9 @@
     },
     methods: {},
     created() {
-      this.$http.get('https://vue-app-blog.firebaseio.com/posts.json')
-        .then(data => data.json())
-        .then(res => {
-          let blogsArray = [];
-          for (let key in res) {
-            res[key].id = key;
-            blogsArray.push(res[key]);
-          }
-          this.blogs = blogsArray;
+      this.$http.get('https://jsonplaceholder.typicode.com/posts')
+        .then(data => {
+          this.blogs = data.body.slice(0, 10);
         });
     },
     computed: {
